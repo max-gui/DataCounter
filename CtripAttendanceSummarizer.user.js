@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name       Ctrip Attendance Summarizer
+// @name       Pirtc Attendance Summarizer
 // @version    20151105
 // @match      http://oa.cn1.global.ctrip.com/Main/Main.aspx
 // @match      http://oa.cn1.global.ctrip.com/HR/AttendenceCalendar.aspx
