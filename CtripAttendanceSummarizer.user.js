@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       Pirtc Attendance Summarizer
-// @version    20160216
+// @version    2016021600
 // @match      http://oa.cn1.global.ctrip.com/Main/Main.aspx
 // @match      http://oa.cn1.global.ctrip.com/HR/AttendenceCalendar.aspx
 // @copyright  2014+, CH3CHO <yqdong@ctrip.com> 
