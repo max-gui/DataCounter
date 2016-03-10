@@ -293,8 +293,9 @@ function getMins(text, isWorkingDay) {
     //    }
     //}
   }
-  var retValue = new Object();
-  retValue.minis = (outHour - inHour) * 60 + outMinute - inMinute - minAdjustment;
+    var retValue = new Object();
+    var minTmp = (outHour - inHour) * 60 + outMinute - inMinute - minAdjustment;
+    retValue.minis = minTmp < 0 ? 0 : minTmp;
   retValue.texi = texiEnalbe;
   retValue.texiTime = outHour + ":" + (outMinute > 50 ? 59 :outMinute + 10);
   retValue.tooEarly = realInHour < 2;
