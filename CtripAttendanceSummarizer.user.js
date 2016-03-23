@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       Pirtc Attendance Summarizer
-// @version    2016031000
+// @version    2016032300
 // @match      http://oa.cn1.global.ctrip.com/Main/Main.aspx
 // @match      http://oa.cn1.global.ctrip.com/HR/AttendenceCalendar.aspx
 // @copyright  2014+, CH3CHO <yqdong@ctrip.com> 
@@ -258,7 +258,7 @@ function getMins(text, isWorkingDay) {
   var inHour = realInHour > 9 ? realInHour : 9;
   var realInMinute = parseInt(text.substring(3, 5));
   //edit
-  var inMinute = realInHour > 9 ? realInMinute : 0;
+  var inMinute = realInHour > 8 ? realInMinute : 0;
   var outHour = parseInt(text.substring(6, 8));
     
   var texiEnalbe = outHour > 21 ?  taxiJustAfter10 + Math.ceil(Math.random()*6) : 0;
