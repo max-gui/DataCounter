@@ -1,11 +1,13 @@
 // ==UserScript==
-// @name       Pirtc Attendance Summarizer
-// @version    2016032300
-// @match      http://oa.cn1.global.ctrip.com/Main/Main.aspx
-// @match      http://oa.cn1.global.ctrip.com/HR/AttendenceCalendar.aspx
-// @copyright  2014+, CH3CHO <yqdong@ctrip.com> 
+// @name       new
+// @version    2016032400
+
+// @match      http://hrint.sh.ctriptravel.com/hr.ehrms.site/AttendanceManagement/AttendenceCalendar.aspx
+// @copyright  2014+, CH3CHO <yqdong@ctrip.com>
 // @editBy     jimmy.katsura
 // @grant      none
+// @namespace https://greasyfork.org/users/30526
+// @description a weekday count for pirtc
 // ==/UserScript==
 
 /* Zepto v1.1.3 - zepto event ajax form ie - zeptojs.com/license */
@@ -49,12 +51,12 @@ var nonWorkingWeekdays = {
         [2, 9],
         [2, 10],
         [2, 11],
-        [2, 12],        
+        [2, 12],
     ]
 };
 var workingWeekEnds = {
     2014: [
-        [9, 28],
+       [9, 28],
         [10, 11]
     ],
     2015: [
@@ -73,7 +75,7 @@ var workingWeekEnds = {
 setInterval(updateAttendance, 1000);
 
 function updateAttendance() {
-    var table = $('#ctl00_cphMain_CalendarAC');
+    var table = $('#CalendarAC');
     // No table here
     if (table.length == 0) {
         return;
@@ -87,7 +89,7 @@ function updateAttendance() {
     var tdt = processTaxiTable(table);
     var ddt = processDinnerTable(table);
     listProcess(table,tdt,ddt);
-    
+
     table.attr('data-processed', true);
 }
 
@@ -96,7 +98,7 @@ function listProcess(table,taxiData,dinnerData){
     var tbl = "<table><tr><th>打车</th><th>晚餐</th></tr>  <tr><td><ul><li>" + taxiData.join("</li><li>") + "</li></ul></td>  <td><ul><li>" + dinnerData.join("</li><li>") + "</li></ul></td></tr></table>";
     table.parent().append(tbl);
 }
-                     
+
 function processTaxiTable(table){
     var textRtn = "";
     var textArr = new Array();
@@ -104,21 +106,21 @@ function processTaxiTable(table){
 table.children('tbody').children('tr').each(function(i, row) {
     $(row).children('td').each(function(j, cell) {
       var listBodies = $(cell).find('.list_body');
-        
+
       if (listBodies.length == 0) {
         return;
       }
-      
+
       var tempTexi = $(listBodies[1]).children()[0].lastChild.data;
       if (tempTexi.indexOf("打车") >= 0){
           textRtn += tempTexi + "\n";
           textArr[arrIndex++] = tempTexi;
           console.log(tempTexi);}
     })});
-    
+
     return textArr;
 }
-                     
+
 function processDinnerTable(table){
 var preDateText = table.children('tbody').children('tr').first().text().trim();
   var textRtn = "";
@@ -127,21 +129,21 @@ var preDateText = table.children('tbody').children('tr').first().text().trim();
 table.children('tbody').children('tr').each(function(i, row) {
     $(row).children('td').each(function(j, cell) {
       var listBodies = $(cell).find('.list_body');
-        
+
       if (listBodies.length == 0) {
         return;
       }
-      
+
       var tempTexi = "晚餐 " + preDateText + $(listBodies[0]).text().trim();
       if ($(listBodies[1]).children()[0]. textContent.indexOf("晚餐") >= 0){
           textRtn += tempTexi + "\n";
           textArr[arrIndex++] = tempTexi;
           console.log(tempTexi);}
     })});
-    
+
     return textArr;
 }
-                     
+
 function processTable(table) {
     var totalWorkingDays = 0, totalClockedMins = 0;
     var date = new Date();
@@ -153,32 +155,32 @@ function processTable(table) {
     } else {
         maxDate = 32;
     }
-  
-    
-    
+
+
+
     var bodyTmp = new Object();
     bodyTmp.texiFlag = false;
-    
+
   var preDateText = table.children('tbody').children('tr').first().text().trim();
   table.children('tbody').children('tr').each(function(i, row) {
     if (i < 2) {
       return;
     }
-      
+
     $(row).children('td').each(function(j, cell) {
       var listBodies = $(cell).find('.list_body');
       if (listBodies.length == 0) {
         return;
       }
-      
+
       var day = parseInt($(listBodies[0]).text().trim());
       if (day >= maxDate) {
         return false;
       }
-      
+
       var isWeekDay = j >= 1 && j <= 5;
       var isWorkingDay = isWeekDay ? isWorkingWeekDay(date.getFullYear(), tableMonth, day) : isWorkingWeekEnd(date.getFullYear(), tableMonth, day);
-      
+
       var clockResult = $(listBodies[1]).text().trim();
       var hasClocked = clockResult != '无刷卡记录';
         if (hasClocked) {
@@ -188,17 +190,17 @@ function processTable(table) {
         var dinnerInfo = minisRtn.dinner > 0 ? "<br/>" + "晚餐 " + minisRtn.dinner : "";
         totalClockedMins += clockedMins;
         $(listBodies[1]).children().append("<br/>" + getTimeText(clockedMins) + dinnerInfo + texiInfo);
-        
+
         if(bodyTmp.texiFlag && minisRtn.tooEarly){
             var preTexiInfo = "打车 " + (taxiAfter24 + Math.ceil(Math.random()*6)) + "元 " + preDateText + day + "日 " + minisRtn.preTexiTime;
           //$(bodyTmp.body[1]).children().append(preTexiInfo);
             //$(listBodies[0]).text().trim()
-            
+
           $(bodyTmp.body[1]).children()[0].lastChild.data = preTexiInfo;
           //var textTmp = $(bodyTmp.body[1]).innerHTML.toString();
           //$(bodyTmp.body[1]).innerHTML = textTmp.replace(/88/, "115");
         }
-        
+
         bodyTmp.texiFlag = minisRtn.texi > 0;
         bodyTmp.body = listBodies;
       }
@@ -208,7 +210,7 @@ function processTable(table) {
       }
     });
   });
-  
+
   var targetWorkingMins = totalWorkingDays * 8 * 60;
   var message = "本月已过" + totalWorkingDays + "个工作日，应工作时间" + getTimeText(targetWorkingMins)
   + '，实际工作时间' + getTimeText(totalClockedMins);
@@ -242,7 +244,7 @@ function getTimeText(totalMinutes) {
 
 function getMins(text, isWorkingDay) {
   var retValue = new Object();
-   
+
   if (text.length < 11) {
      retValue.minis = 0;
      retValue.texi = 0;
@@ -252,7 +254,7 @@ function getMins(text, isWorkingDay) {
       retValue.preTexiTime = "02:" + Math.ceil(Math.random()*40).toString();
     return retValue;
   }
-    
+
   var realInHour = parseInt(text.substring(0, 2));
   //edit
   var inHour = realInHour > 9 ? realInHour : 9;
@@ -260,10 +262,10 @@ function getMins(text, isWorkingDay) {
   //edit
   var inMinute = realInHour > 8 ? realInMinute : 0;
   var outHour = parseInt(text.substring(6, 8));
-    
+
   var texiEnalbe = outHour > 21 ?  taxiJustAfter10 + Math.ceil(Math.random()*6) : 0;
   var dinnerEnale = outHour > 20 ? 20 : 0;
-  
+
   var outMinute = parseInt(text.substring(9, 11));
   if(outHour < 9)
   {
@@ -273,10 +275,10 @@ function getMins(text, isWorkingDay) {
      retValue.tooEarly = true;
      retValue.dinner = 0;
      retValue.preTexiTime = outHour + ":" + (outMinute > 50 ? 59 :outMinute + 10);
-    
+
      return retValue;
   }
-    
+
   var minAdjustment = 0;
   if (isWorkingDay) {
     minAdjustment = 60;
