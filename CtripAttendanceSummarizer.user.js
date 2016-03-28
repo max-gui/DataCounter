@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       Pirtc Attendance Summarizer
-// @version    2016032401
+// @version    2016032800
 
 // @match      http://hrint.sh.ctriptravel.com/hr.ehrms.site/AttendanceManagement/AttendenceCalendar.aspx
 // @copyright  2014+, CH3CHO <yqdong@ctrip.com>
@@ -178,7 +178,7 @@ function processTable(table) {
         return false;
       }
 
-      var isWeekDay = j >= 1 && j <= 5;
+      var isWeekDay = j >= 0 && j < 5;
       var isWorkingDay = isWeekDay ? isWorkingWeekDay(date.getFullYear(), tableMonth, day) : isWorkingWeekEnd(date.getFullYear(), tableMonth, day);
 
       var clockResult = $(listBodies[1]).text().trim();
