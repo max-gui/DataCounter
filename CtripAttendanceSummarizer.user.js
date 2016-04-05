@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       Pirtc Attendance Summarizer
-// @version    2016032800
+// @version    2016040400
 
 // @match      http://hrint.sh.ctriptravel.com/hr.ehrms.site/AttendanceManagement/AttendenceCalendar.aspx
 // @copyright  2014+, CH3CHO <yqdong@ctrip.com>
@@ -52,6 +52,7 @@ var nonWorkingWeekdays = {
         [2, 10],
         [2, 11],
         [2, 12],
+        [4, 4]
     ]
 };
 var workingWeekEnds = {
