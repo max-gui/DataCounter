@@ -187,13 +187,13 @@ function processTable(table) {
         if (hasClocked) {
         var minisRtn = getMins(clockResult, isWorkingDay);
         var clockedMins = minisRtn.minis;
-        var texiInfo = minisRtn.texi > 0 ? "<br/>" + "打车 " + minisRtn.texi + "元 " + preDateText + day + "日 " + minisRtn.texiTime : "";
+            var texiInfo = minisRtn.texi > 0 ? "<br/>" + "打车 '" + minisRtn.texi + "'元 *" + preDateText + day + "日* @" + minisRtn.texiTime + "@": "";
         var dinnerInfo = minisRtn.dinner > 0 ? "<br/>" + "晚餐 " + minisRtn.dinner : "";
         totalClockedMins += clockedMins;
         $(listBodies[1]).children().append("<br/>" + getTimeText(clockedMins) + dinnerInfo + texiInfo);
 
         if(bodyTmp.texiFlag && minisRtn.tooEarly){
-            var preTexiInfo = "打车 " + (taxiAfter24 + Math.ceil(Math.random()*6)) + "元 " + preDateText + day + "日 " + minisRtn.preTexiTime;
+            var preTexiInfo = "打车 " + (taxiAfter24 + Math.ceil(Math.random()*6)) + "'元 *" + preDateText + day + "日* @" + minisRtn.preTexiTime + "@";
           //$(bodyTmp.body[1]).children().append(preTexiInfo);
             //$(listBodies[0]).text().trim()
 
