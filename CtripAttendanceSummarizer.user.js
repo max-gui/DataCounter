@@ -52,7 +52,8 @@ var nonWorkingWeekdays = {
         [2, 10],
         [2, 11],
         [2, 12],
-        [4, 4]
+        [4, 4],
+        [5, 2]
     ]
 };
 var workingWeekEnds = {
@@ -69,7 +70,7 @@ var workingWeekEnds = {
     ],
     2016: [
         [2, 6],
-        [2, 14]
+        [2, 14],
     ]
 };
 
