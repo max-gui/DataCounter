@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       Pirtc Attendance Summarizer
-// @version    2016042800
+// @version    2016050500
 
 // @match      http://hrint.sh.ctriptravel.com/hr.ehrms.site/AttendanceManagement/AttendenceCalendar.aspx
 // @copyright  2014+, CH3CHO <yqdong@ctrip.com>
@@ -193,7 +193,7 @@ function processTable(table) {
         totalClockedMins += clockedMins;
         $(listBodies[1]).children().append("<br/>" + getTimeText(clockedMins) + dinnerInfo + texiInfo);
 
-        if(bodyTmp.texiFlag && minisRtn.tooEarly){
+        if(minisRtn.tooEarly)//bodyTmp.texiFlag && minisRtn.tooEarly){
             var preTexiInfo = "打车 " + (taxiAfter24 + Math.ceil(Math.random()*6)) + "'元 *" + preDateText + day + "日* @" + minisRtn.preTexiTime + "@";
           //$(bodyTmp.body[1]).children().append(preTexiInfo);
             //$(listBodies[0]).text().trim()
