@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       Pirtc Attendance Summarizer
-// @version    2016061406
+// @version    2016061407
 
 // @match      http://hrint.sh.ctriptravel.com/hr.ehrms.site/AttendanceManagement/AttendenceCalendar.aspx
 // @copyright  2014+, CH3CHO <yqdong@ctrip.com>
@@ -141,7 +141,13 @@ function processTable(table) {
 
 			var clockResult = $(listBodies[1]).text().trim();
 			var hasClocked = clockResult != '无刷卡记录';
+
 			if (hasClocked) {
+        if (!isWorkingDay)
+        {
+          $(listBodies[1]).children('td:first-child').css('background-color', '#009ad6');
+        }
+
 				var minisRtn = getMins(clockResult, isWorkingDay);
 				var clockedMins = minisRtn.minis;
 				var texiInfo = minisRtn.texi > 0 ? "<br/>" + "打车 '" + minisRtn.texi + "'元 *" + preDateText + day + "日* @" + minisRtn.texiTime + "@": "";
@@ -162,9 +168,10 @@ function processTable(table) {
 				bodyTmp.body = listBodies;
 			} else {
 
-				var colorTmp = isWorkingDay ? '#ed1941' : '#007947';
+				colorTmp = isWorkingDay ? '#f15a22' : '#dea32c';
         $(listBodies[1]).children('td:first-child').css('background-color', colorTmp);
 			}
+      $(listBodies[1]).children('td:first-child').css('background-color', colorTmp);
 			var hasLeaveRequest = $(listBodies[2]).text().trim() != '无';
 			if (!hasLeaveRequest && isWorkingDay) {++totalWorkingDays;
 			}
