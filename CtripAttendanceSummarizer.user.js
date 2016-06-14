@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       Pirtc Attendance Summarizer
-// @version    2016061403
+// @version    2016061404
 
 // @match      http://hrint.sh.ctriptravel.com/hr.ehrms.site/AttendanceManagement/AttendenceCalendar.aspx
 // @copyright  2014+, CH3CHO <yqdong@ctrip.com>
@@ -161,8 +161,9 @@ function processTable(table) {
 				bodyTmp.texiFlag = minisRtn.texi > 0;
 				bodyTmp.body = listBodies;
 			} else if (isWorkingDay) {
-				var colorTmp = isWorkingDay ? '#ed1941': '#007947';
-				'#ed1941'$(listBodies[1]).children('td:first-child').css('background-color', colorTmp);
+
+				var colorTmp = isWorkingDay ? '#ed1941' : '#007947';
+        $(listBodies[1]).children('td:first-child').css('background-color', colorTmp);
 			}
 			var hasLeaveRequest = $(listBodies[2]).text().trim() != '无';
 			if (!hasLeaveRequest && isWorkingDay) {++totalWorkingDays;
