@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       Pirtc Attendance Summarizer
-// @version    2016061405
+// @version    2016061406
 
 // @match      http://hrint.sh.ctriptravel.com/hr.ehrms.site/AttendanceManagement/AttendenceCalendar.aspx
 // @copyright  2014+, CH3CHO <yqdong@ctrip.com>
@@ -160,7 +160,7 @@ function processTable(table) {
 
 				bodyTmp.texiFlag = minisRtn.texi > 0;
 				bodyTmp.body = listBodies;
-			} else if (isWorkingDay) {
+			} else {
 
 				var colorTmp = isWorkingDay ? '#ed1941' : '#007947';
         $(listBodies[1]).children('td:first-child').css('background-color', colorTmp);
