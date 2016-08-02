@@ -156,7 +156,7 @@ function processTable(table) {
 				$(listBodies[1]).children().append("<br/>" + getTimeText(clockedMins) + dinnerInfo + texiInfo);
 
 				if (minisRtn.tooEarly) { //bodyTmp.texiFlag && minisRtn.tooEarly){
-					var preTexiInfo = "打车 " + (taxiAfter24 + Math.ceil(Math.random() * 6)) + "'元 *" + preDateText + day + "日* @" + minisRtn.preTexiTime + "@";
+					var preTexiInfo = "打车 '" + (taxiAfter24 + Math.ceil(Math.random() * 6)) + "'元 *" + preDateText + day + "日* @" + minisRtn.preTexiTime + "@";
 					//$(bodyTmp.body[1]).children().append(preTexiInfo);
 					//$(listBodies[0]).text().trim()
 					$(bodyTmp.body[1]).children()[0].lastChild.data = preTexiInfo;
