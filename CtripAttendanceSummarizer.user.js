@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       Pirtc Attendance Summarizer
-// @version    2016091801
+// @version    2016091802
 
 // @match      http://hrint.sh.ctriptravel.com/hr.ehrms.site/AttendanceManagement/AttendenceCalendar.aspx
 // @copyright  2014+, CH3CHO <yqdong@ctrip.com>
@@ -24,7 +24,7 @@ var nonWorkingWeekdays = {
 var workingWeekEnds = {
     2014 : [[9, 28], [10, 11]],
     2015 : [[1, 4], [2, 15], [2, 28], [9, 6], [10, 10]],
-    2016 : [[2, 6], [2, 14], [6, 12], [9,17]]
+    2016 : [[2, 6], [2, 14], [6, 12], [9,18]]
 };
 
 setInterval(updateAttendance, 1000);
