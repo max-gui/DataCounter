@@ -1,8 +1,9 @@
 // ==UserScript==
 // @name       Pirtc Attendance Summarizer
-// @version    2017011301
+// @version    2017011302
 
-// @match      http://hrint.sh.ctriptravel.com/HR.eHRMS.Site/MainEx.aspx
+// @include    http://hrint.sh.ctriptravel.com/hr.ehrms.site/AttendanceManagement/AttendenceCalendar.aspx
+// @include    http://hrint.sh.ctriptravel.com/HR.eHRMS.Site/MainEx.aspx?page=AttendanceManagement
 // @copyright  2014+, CH3CHO <yqdong@ctrip.com>
 // @editBy     jimmy.katsura
 // @grant      none
@@ -19,7 +20,8 @@ var taxiJustAfter10 = 84;
 var nonWorkingWeekdays = {
     2014 : [[6, 2], [9, 8], [10, 1], [10, 2], [10, 3], [10, 6], [10, 7]],
     2015 : [[1, 1], [1, 2], [2, 18], [2, 19], [2, 20], [2, 23], [2, 24], [4, 6], [5, 1], [6, 22], [9, 3], [9, 4], [10, 1], [10, 2], [10, 5], [10, 6], [10, 7]],
-    2016 : [[1, 1], [2, 8], [2, 9], [2, 10], [2, 11], [2, 12], [4, 4], [5, 2], [6, 9], [6, 10],[9,15],[9,16],[10,3],[10,4],[10,5],[10,6],[10,7]]
+    2016 : [[1, 1], [2, 8], [2, 9], [2, 10], [2, 11], [2, 12], [4, 4], [5, 2], [6, 9], [6, 10],[9,15],[9,16],[10,3],[10,4],[10,5],[10,6],[10,7]],
+    2017 : [[1, 2]]
 };
 var workingWeekEnds = {
     2014 : [[9, 28], [10, 11]],
