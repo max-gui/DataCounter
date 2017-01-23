@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       Pirtc Attendance Summarizer
-// @version    2017011302
+// @version    2017012301
 
 // @include    http://hrint.sh.ctriptravel.com/hr.ehrms.site/AttendanceManagement/AttendenceCalendar.aspx
 // @include    http://hrint.sh.ctriptravel.com/HR.eHRMS.Site/MainEx.aspx?page=AttendanceManagement
